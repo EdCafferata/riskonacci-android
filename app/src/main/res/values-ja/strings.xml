@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">標準</string>
+    <string name="deck_tshirt">Tシャツ</string>
+    <string name="deck_risk">リスク</string>
+    <string name="axis_likelihood">可能性</string>
+    <string name="axis_impact">影響度</string>
+    <string name="card_none">なし</string>
+    <string name="card_low">低</string>
+    <string name="card_medium">中</string>
+    <string name="card_high">高</string>
+    <string name="card_critical">重大</string>
+    <string name="card_rare">まれ</string>
+    <string name="card_unlikely">起こりにくい</string>
+    <string name="card_possible">起こり得る</string>
+    <string name="card_likely">起こりやすい</string>
+    <string name="card_almost_certain">ほぼ確実</string>
+    <string name="card_negligible">無視できる</string>
+    <string name="card_minor">軽微</string>
+    <string name="card_moderate">中程度</string>
+    <string name="card_major">重大</string>
+    <string name="card_catastrophic">壊滅的</string>
+    <string name="action_two_rounds">2ラウンド</string>
+    <string name="action_back">戻る</string>
+    <string name="action_pick_again">もう一度選ぶ</string>
+    <string name="risk_matrix_title">リスクマトリクス</string>
+    <string name="play_together">一緒にプレイ</string>
+    <string name="magnitude_format">マグニチュード %1$s</string>
+</resources>

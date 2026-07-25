@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">Standaard</string>
+    <string name="deck_tshirt">T-Shirt</string>
+    <string name="deck_risk">Risico</string>
+    <string name="axis_likelihood">Waarschijnlijkheid</string>
+    <string name="axis_impact">Impact</string>
+    <string name="card_none">Geen</string>
+    <string name="card_low">Laag</string>
+    <string name="card_medium">Gemiddeld</string>
+    <string name="card_high">Hoog</string>
+    <string name="card_critical">Kritiek</string>
+    <string name="card_rare">Zeldzaam</string>
+    <string name="card_unlikely">Onwaarschijnlijk</string>
+    <string name="card_possible">Mogelijk</string>
+    <string name="card_likely">Waarschijnlijk</string>
+    <string name="card_almost_certain">Vrijwel zeker</string>
+    <string name="card_negligible">Verwaarloosbaar</string>
+    <string name="card_minor">Klein</string>
+    <string name="card_moderate">Matig</string>
+    <string name="card_major">Groot</string>
+    <string name="card_catastrophic">Catastrofaal</string>
+    <string name="action_two_rounds">2 rondes</string>
+    <string name="action_back">Terug</string>
+    <string name="action_pick_again">Opnieuw kiezen</string>
+    <string name="risk_matrix_title">Risicomatrix</string>
+    <string name="play_together">Samen spelen</string>
+    <string name="magnitude_format">Omvang %1$s</string>
+</resources>

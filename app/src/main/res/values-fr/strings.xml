@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">Standard</string>
+    <string name="deck_tshirt">T-shirt</string>
+    <string name="deck_risk">Risque</string>
+    <string name="axis_likelihood">Probabilité</string>
+    <string name="axis_impact">Impact</string>
+    <string name="card_none">Aucun</string>
+    <string name="card_low">Faible</string>
+    <string name="card_medium">Moyen</string>
+    <string name="card_high">Élevé</string>
+    <string name="card_critical">Critique</string>
+    <string name="card_rare">Rare</string>
+    <string name="card_unlikely">Improbable</string>
+    <string name="card_possible">Possible</string>
+    <string name="card_likely">Probable</string>
+    <string name="card_almost_certain">Presque certain</string>
+    <string name="card_negligible">Négligeable</string>
+    <string name="card_minor">Mineur</string>
+    <string name="card_moderate">Modéré</string>
+    <string name="card_major">Majeur</string>
+    <string name="card_catastrophic">Catastrophique</string>
+    <string name="action_two_rounds">2 tours</string>
+    <string name="action_back">Retour</string>
+    <string name="action_pick_again">Choisir à nouveau</string>
+    <string name="risk_matrix_title">Matrice des risques</string>
+    <string name="play_together">Jouer ensemble</string>
+    <string name="magnitude_format">Ampleur %1$s</string>
+</resources>

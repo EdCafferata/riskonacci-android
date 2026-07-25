@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Riskonacci</string>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">Standard</string>
+    <string name="deck_tshirt">T-Shirt</string>
+    <string name="deck_risk">Risk</string>
+    <string name="axis_likelihood">Likelihood</string>
+    <string name="axis_impact">Impact</string>
+    <string name="card_none">None</string>
+    <string name="card_low">Low</string>
+    <string name="card_medium">Medium</string>
+    <string name="card_high">High</string>
+    <string name="card_critical">Critical</string>
+    <string name="card_rare">Rare</string>
+    <string name="card_unlikely">Unlikely</string>
+    <string name="card_possible">Possible</string>
+    <string name="card_likely">Likely</string>
+    <string name="card_almost_certain">Almost Certain</string>
+    <string name="card_negligible">Negligible</string>
+    <string name="card_minor">Minor</string>
+    <string name="card_moderate">Moderate</string>
+    <string name="card_major">Major</string>
+    <string name="card_catastrophic">Catastrophic</string>
+    <string name="action_two_rounds">2 rounds</string>
+    <string name="action_back">Back</string>
+    <string name="action_pick_again">Pick again</string>
+    <string name="risk_matrix_title">Risk Matrix</string>
+    <string name="play_together">Play together</string>
+    <string name="magnitude_format">Magnitude %1$s</string>
+</resources>

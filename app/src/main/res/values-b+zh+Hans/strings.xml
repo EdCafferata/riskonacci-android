@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">标准</string>
+    <string name="deck_tshirt">T恤</string>
+    <string name="deck_risk">风险</string>
+    <string name="axis_likelihood">可能性</string>
+    <string name="axis_impact">影响</string>
+    <string name="card_none">无</string>
+    <string name="card_low">低</string>
+    <string name="card_medium">中</string>
+    <string name="card_high">高</string>
+    <string name="card_critical">严重</string>
+    <string name="card_rare">罕见</string>
+    <string name="card_unlikely">不太可能</string>
+    <string name="card_possible">可能</string>
+    <string name="card_likely">很可能</string>
+    <string name="card_almost_certain">几乎肯定</string>
+    <string name="card_negligible">可忽略</string>
+    <string name="card_minor">轻微</string>
+    <string name="card_moderate">中等</string>
+    <string name="card_major">重大</string>
+    <string name="card_catastrophic">灾难性</string>
+    <string name="action_two_rounds">两轮</string>
+    <string name="action_back">返回</string>
+    <string name="action_pick_again">重新选择</string>
+    <string name="risk_matrix_title">风险矩阵</string>
+    <string name="play_together">一起玩</string>
+    <string name="magnitude_format">量级 %1$s</string>
+</resources>

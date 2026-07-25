@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">표준</string>
+    <string name="deck_tshirt">티셔츠</string>
+    <string name="deck_risk">위험</string>
+    <string name="axis_likelihood">가능성</string>
+    <string name="axis_impact">영향도</string>
+    <string name="card_none">없음</string>
+    <string name="card_low">낮음</string>
+    <string name="card_medium">중간</string>
+    <string name="card_high">높음</string>
+    <string name="card_critical">심각</string>
+    <string name="card_rare">드묾</string>
+    <string name="card_unlikely">가능성 낮음</string>
+    <string name="card_possible">가능함</string>
+    <string name="card_likely">가능성 높음</string>
+    <string name="card_almost_certain">거의 확실함</string>
+    <string name="card_negligible">무시할 수 있음</string>
+    <string name="card_minor">경미함</string>
+    <string name="card_moderate">보통</string>
+    <string name="card_major">심각함</string>
+    <string name="card_catastrophic">치명적</string>
+    <string name="action_two_rounds">2라운드</string>
+    <string name="action_back">뒤로</string>
+    <string name="action_pick_again">다시 선택</string>
+    <string name="risk_matrix_title">위험 매트릭스</string>
+    <string name="play_together">함께 플레이</string>
+    <string name="magnitude_format">크기 %1$s</string>
+</resources>

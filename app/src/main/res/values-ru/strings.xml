@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deck_fibonacci">Fibonacci</string>
+    <string name="deck_standard">Стандарт</string>
+    <string name="deck_tshirt">Футболка</string>
+    <string name="deck_risk">Риск</string>
+    <string name="axis_likelihood">Вероятность</string>
+    <string name="axis_impact">Воздействие</string>
+    <string name="card_none">Нет</string>
+    <string name="card_low">Низкий</string>
+    <string name="card_medium">Средний</string>
+    <string name="card_high">Высокий</string>
+    <string name="card_critical">Критический</string>
+    <string name="card_rare">Редко</string>
+    <string name="card_unlikely">Маловероятно</string>
+    <string name="card_possible">Возможно</string>
+    <string name="card_likely">Вероятно</string>
+    <string name="card_almost_certain">Почти наверняка</string>
+    <string name="card_negligible">Незначительно</string>
+    <string name="card_minor">Незначительный</string>
+    <string name="card_moderate">Умеренный</string>
+    <string name="card_major">Значительный</string>
+    <string name="card_catastrophic">Катастрофический</string>
+    <string name="action_two_rounds">2 раунда</string>
+    <string name="action_back">Назад</string>
+    <string name="action_pick_again">Выбрать снова</string>
+    <string name="risk_matrix_title">Матрица рисков</string>
+    <string name="play_together">Играть вместе</string>
+    <string name="magnitude_format">Величина %1$s</string>
+</resources>
