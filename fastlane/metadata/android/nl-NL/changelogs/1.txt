@@ -1,0 +1,1 @@
+Eerste release: Fibonacci-, Standaard-, T-shirt- en Risk-deck, Likelihood × Impact-modus met gecombineerde 5×5-risicomatrix, en cross-platform "Samen spelen" met de iOS-app.

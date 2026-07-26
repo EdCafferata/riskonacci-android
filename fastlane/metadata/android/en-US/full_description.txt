@@ -1,0 +1,18 @@
+Riskonacci is a free planning-poker app for agile/lean teams — with a unique Risk deck alongside the usual story-point estimates, something almost no other planning-poker app offers.
+
+🃏 MULTIPLE DECKS
+Choose Fibonacci, Standard, T-shirt sizes, or the dedicated Risk deck (None → Low → Medium → High → Critical) with its own colors and icons.
+
+🎯 LIKELIHOOD × IMPACT
+With the Risk deck you can also estimate in two rounds (Likelihood first, then Impact) — the result is automatically combined into a clear 5×5 risk matrix (green → red), with everyone's vote shown as a dot.
+
+👥 PLAY TOGETHER, EVEN CROSS-PLATFORM
+The host shares a short 5-character room code, participants join with it — works across Android and iPhone devices in the same room.
+
+🌍 MULTILINGUAL
+Available in 10 languages: Dutch, English, German, French, Spanish, Italian, Portuguese, Japanese, Korean, and Chinese.
+
+💶 FREE
+No subscription, no paywall. A voluntary tip jar is available for anyone who wants to support the project.
+
+Idea suggested by Oscar Sarruco.

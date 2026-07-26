@@ -1,0 +1,1 @@
+Initial release: Fibonacci, Standard, T-shirt, and Risk decks, Likelihood × Impact two-round mode with a combined 5×5 risk matrix, and cross-platform "Play together" multiplayer with the iOS app.
