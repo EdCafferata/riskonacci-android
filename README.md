@@ -4,23 +4,22 @@ Android port of [Riskonacci](https://github.com/EdCafferata/riskonacci), a free 
 
 Native Kotlin + Jetpack Compose, not a cross-platform framework — mirrors the iOS app's models and screens 1:1 where the platforms allow it.
 
-## Status (this is a work in progress, ported in one overnight session)
+## Status
 
 **Working:**
 - All four decks (Fibonacci, Standard, T-Shirt, Risk), solo play
 - Risk deck's two-round Likelihood × Impact flow with the combined 5×5 risk matrix reveal
+- **"Play together" multiplayer, cross-platform with iOS** — backed by Firebase (Firestore + Anonymous Auth), the same shared backend and schema as the iOS app, so an iPhone and an Android device can join the exact same room with a 5-character code. See the iOS repo's README for the Firebase project setup (shared between both apps) and the Firestore security rules.
 - Full localization — 10 languages (nl, de, fr, es, it, pt, ja, ko, ru, zh-Hans), translations reused verbatim from the iOS app's `Localizable.xcstrings` for consistency between platforms
 - Material 3 theming matching the iOS app's gold accent color exactly
 - Launcher icon reused from the iOS app's app icon asset
 
 **Not yet ported:**
-- **"Play together" (local multiplayer)** — the iOS app uses Apple's MultipeerConnectivity; the Android equivalent would be Google's [Nearby Connections API](https://developers.google.com/nearby/connections/overview), which is a real implementation effort of its own, not a drop-in port. Not started yet.
-- **"Online" rooms (CloudKit)** — CloudKit is Apple-only. There is no cross-platform way for an iPhone and an Android device to join the *same* online room without a shared backend (see the note below).
 - **Tip jar** — the iOS app uses StoreKit 2; Android's equivalent is Google Play Billing, which requires product IDs configured in a Google Play Console listing. No Play Console account exists yet for this app (that's a paid, account-creation step only the account owner can do).
 - **Rate-the-app prompt** — same reasoning; Android's equivalent (Google Play's in-app review API) also needs a Play Console listing to mean anything.
 
-### On cross-platform multiplayer
-If the goal is ever "an iPhone and an Android device play in the same room," neither MultipeerConnectivity nor CloudKit can be reused as-is — both are Apple-only. That would need a shared backend both platforms can talk to (e.g. Firebase, or a small self-hosted relay), which is a separate architecture decision from "porting the UI," not something to assume by default.
+### Firebase config
+This app needs its own `google-services.json` (bundle package `info.cafferata.riskonacci`) in `app/` — gitignored, same reasoning as the iOS repo's `GoogleService-Info.plist`. Ask whoever manages the Firebase project for it.
 
 ## Requirements
 

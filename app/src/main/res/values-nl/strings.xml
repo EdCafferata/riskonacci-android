@@ -27,4 +27,17 @@
     <string name="risk_matrix_title">Risicomatrix</string>
     <string name="play_together">Samen spelen</string>
     <string name="magnitude_format">Omvang %1$s</string>
+    <string name="nav_multiplayer">Multiplayer</string>
+    <string name="field_your_name">Jouw naam</string>
+    <string name="field_room_code">Room-code</string>
+    <string name="action_host_room">Room hosten</string>
+    <string name="action_join">Deelnemen</string>
+    <string name="action_join_room_instead">Room joinen in plaats daarvan</string>
+    <string name="label_room">Room</string>
+    <string name="action_share_code">Code delen</string>
+    <string name="share_join_room_prefix">Doe mee met mijn Riskonacci-room:</string>
+    <string name="action_leave">Verlaten</string>
+    <string name="action_new_round">Nieuwe ronde</string>
+    <string name="subtitle_play_together">Samen spelen, van overal</string>
+    <string name="action_reveal">Onthullen</string>
 </resources>

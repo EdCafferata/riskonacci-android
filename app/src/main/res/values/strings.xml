@@ -28,4 +28,17 @@
     <string name="risk_matrix_title">Risk Matrix</string>
     <string name="play_together">Play together</string>
     <string name="magnitude_format">Magnitude %1$s</string>
+    <string name="nav_multiplayer">Multiplayer</string>
+    <string name="field_your_name">Your name</string>
+    <string name="field_room_code">Room code</string>
+    <string name="action_host_room">Host a room</string>
+    <string name="action_join">Join</string>
+    <string name="action_join_room_instead">Join a room instead</string>
+    <string name="label_room">Room</string>
+    <string name="action_share_code">Share code</string>
+    <string name="share_join_room_prefix">Join my Riskonacci room:</string>
+    <string name="action_leave">Leave</string>
+    <string name="action_new_round">New round</string>
+    <string name="subtitle_play_together">Play together, from anywhere</string>
+    <string name="action_reveal">Reveal</string>
 </resources>

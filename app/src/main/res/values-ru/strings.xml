@@ -27,4 +27,17 @@
     <string name="risk_matrix_title">Матрица рисков</string>
     <string name="play_together">Играть вместе</string>
     <string name="magnitude_format">Величина %1$s</string>
+    <string name="nav_multiplayer">Мультиплеер</string>
+    <string name="field_your_name">Ваше имя</string>
+    <string name="field_room_code">Код комнаты</string>
+    <string name="action_host_room">Создать комнату</string>
+    <string name="action_join">Присоединиться</string>
+    <string name="action_join_room_instead">Присоединиться к комнате</string>
+    <string name="label_room">Комната</string>
+    <string name="action_share_code">Поделиться кодом</string>
+    <string name="share_join_room_prefix">Присоединяйся к моей комнате Riskonacci:</string>
+    <string name="action_leave">Выйти</string>
+    <string name="action_new_round">Новый раунд</string>
+    <string name="subtitle_play_together">Играйте вместе откуда угодно</string>
+    <string name="action_reveal">Показать</string>
 </resources>

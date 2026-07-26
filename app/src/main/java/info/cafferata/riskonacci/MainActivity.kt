@@ -8,14 +8,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import info.cafferata.riskonacci.ui.screens.CardGridScreen
 import info.cafferata.riskonacci.ui.screens.DeckPickerScreen
 import info.cafferata.riskonacci.ui.screens.RevealScreen
 import info.cafferata.riskonacci.ui.screens.RiskMatrixRevealScreen
+import info.cafferata.riskonacci.ui.screens.RoomEntryScreen
 import info.cafferata.riskonacci.ui.theme.RiskonacciTheme
 import info.cafferata.riskonacci.viewmodel.GameViewModel
+import info.cafferata.riskonacci.viewmodel.MultiplayerRoomViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +41,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun RiskonacciApp() {
     val viewModel: GameViewModel = viewModel()
+    var showMultiplayer by remember { mutableStateOf(false) }
+
+    if (showMultiplayer) {
+        val room: MultiplayerRoomViewModel = viewModel()
+        RoomEntryScreen(room)
+        return
+    }
 
     when {
         viewModel.isRevealed -> {
@@ -57,6 +70,9 @@ private fun RiskonacciApp() {
             )
 
         else ->
-            DeckPickerScreen(onDeckSelected = { deck -> viewModel.chooseDeck(deck) })
+            DeckPickerScreen(
+                onDeckSelected = { deck -> viewModel.chooseDeck(deck) },
+                onPlayTogether = { showMultiplayer = true },
+            )
     }
 }

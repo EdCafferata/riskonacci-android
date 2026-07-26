@@ -31,7 +31,12 @@ private val labelResources: Map<String, Int> = mapOf(
 )
 
 @Composable
-fun localizedLabel(card: PokerCard): String {
-    val resId = labelResources[card.label] ?: return card.label
+fun localizedLabel(card: PokerCard): String = localizedLabel(card.label)
+
+/** Same lookup as [localizedLabel], for call sites that only have the
+ * raw label string (e.g. a stored vote) rather than a full `PokerCard`. */
+@Composable
+fun localizedLabel(label: String): String {
+    val resId = labelResources[label] ?: return label
     return stringResource(resId)
 }

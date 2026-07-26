@@ -27,4 +27,17 @@
     <string name="risk_matrix_title">Matrice del rischio</string>
     <string name="play_together">Gioca insieme</string>
     <string name="magnitude_format">Entità %1$s</string>
+    <string name="nav_multiplayer">Multiplayer</string>
+    <string name="field_your_name">Il tuo nome</string>
+    <string name="field_room_code">Codice stanza</string>
+    <string name="action_host_room">Crea una stanza</string>
+    <string name="action_join">Partecipa</string>
+    <string name="action_join_room_instead">Unisciti a una stanza</string>
+    <string name="label_room">Stanza</string>
+    <string name="action_share_code">Condividi codice</string>
+    <string name="share_join_room_prefix">Unisciti alla mia stanza Riskonacci:</string>
+    <string name="action_leave">Esci</string>
+    <string name="action_new_round">Nuovo turno</string>
+    <string name="subtitle_play_together">Gioca insieme, da qualsiasi luogo</string>
+    <string name="action_reveal">Rivela</string>
 </resources>

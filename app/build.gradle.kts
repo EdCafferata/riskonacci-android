@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -45,9 +46,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.9.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
-    // Nearby Connections — Android's equivalent of MultipeerConnectivity for
-    // the local-network/Bluetooth "Nearby" multiplayer mode.
-    implementation("com.google.android.gms:play-services-nearby:19.3.0")
+    // Firebase — the shared multiplayer backend for both "Nearby" and
+    // "Online" rooms, and the only one: no separate Nearby Connections
+    // implementation, since one Firestore-backed transport already works
+    // for local and remote play and interoperates with the iOS app.
+    implementation(platform("com.google.firebase:firebase-bom:34.15.0"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.1")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }

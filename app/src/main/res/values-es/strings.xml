@@ -27,4 +27,17 @@
     <string name="risk_matrix_title">Matriz de riesgo</string>
     <string name="play_together">Jugar juntos</string>
     <string name="magnitude_format">Magnitud %1$s</string>
+    <string name="nav_multiplayer">Multijugador</string>
+    <string name="field_your_name">Tu nombre</string>
+    <string name="field_room_code">Código de la sala</string>
+    <string name="action_host_room">Crear una sala</string>
+    <string name="action_join">Unirse</string>
+    <string name="action_join_room_instead">Unirse a una sala en su lugar</string>
+    <string name="label_room">Sala</string>
+    <string name="action_share_code">Compartir código</string>
+    <string name="share_join_room_prefix">Únete a mi sala de Riskonacci:</string>
+    <string name="action_leave">Salir</string>
+    <string name="action_new_round">Nueva ronda</string>
+    <string name="subtitle_play_together">Jugar juntos, desde cualquier lugar</string>
+    <string name="action_reveal">Revelar</string>
 </resources>

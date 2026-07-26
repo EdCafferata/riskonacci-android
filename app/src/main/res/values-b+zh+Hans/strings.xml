@@ -27,4 +27,17 @@
     <string name="risk_matrix_title">风险矩阵</string>
     <string name="play_together">一起玩</string>
     <string name="magnitude_format">量级 %1$s</string>
+    <string name="nav_multiplayer">多人游戏</string>
+    <string name="field_your_name">你的名字</string>
+    <string name="field_room_code">房间代码</string>
+    <string name="action_host_room">创建房间</string>
+    <string name="action_join">加入</string>
+    <string name="action_join_room_instead">改为加入房间</string>
+    <string name="label_room">房间</string>
+    <string name="action_share_code">分享代码</string>
+    <string name="share_join_room_prefix">加入我的 Riskonacci 房间：</string>
+    <string name="action_leave">离开</string>
+    <string name="action_new_round">新一轮</string>
+    <string name="subtitle_play_together">随时随地一起玩</string>
+    <string name="action_reveal">揭晓</string>
 </resources>

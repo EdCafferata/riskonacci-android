@@ -27,4 +27,17 @@
     <string name="risk_matrix_title">リスクマトリクス</string>
     <string name="play_together">一緒にプレイ</string>
     <string name="magnitude_format">マグニチュード %1$s</string>
+    <string name="nav_multiplayer">マルチプレイヤー</string>
+    <string name="field_your_name">お名前</string>
+    <string name="field_room_code">ルームコード</string>
+    <string name="action_host_room">ルームを作成</string>
+    <string name="action_join">参加</string>
+    <string name="action_join_room_instead">代わりにルームに参加</string>
+    <string name="label_room">ルーム</string>
+    <string name="action_share_code">コードを共有</string>
+    <string name="share_join_room_prefix">私のRiskonacciルームに参加してください:</string>
+    <string name="action_leave">退出</string>
+    <string name="action_new_round">新しいラウンド</string>
+    <string name="subtitle_play_together">どこからでも一緒にプレイ</string>
+    <string name="action_reveal">公開</string>
 </resources>
