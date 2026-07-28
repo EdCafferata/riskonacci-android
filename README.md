@@ -1,6 +1,6 @@
 # Riskonacci (Android)
 
-🔒 Laatste security check: 2026-07-28 22:56 CEST
+🔒 Laatste security check: 2026-07-28 22:59 CEST
 
 Android port of [Riskonacci](https://github.com/EdCafferata/riskonacci), a free planning-poker app with a built-in **Risk** card type (None → Low → Medium → High → Critical) alongside Fibonacci, Standard, and T-Shirt-size decks — plus a Likelihood × Impact two-round mode that combines into a 5×5 risk matrix.
 
