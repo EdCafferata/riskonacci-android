@@ -40,4 +40,7 @@
     <string name="action_new_round">Новый раунд</string>
     <string name="subtitle_play_together">Играйте вместе откуда угодно</string>
     <string name="action_reveal">Показать</string>
+    <string name="state_connecting">Подключение…</string>
+    <string name="error_connect_failed_title">Не удалось подключиться</string>
+    <string name="error_connect_failed_message">Проверьте подключение к интернету и повторите попытку.</string>
 </resources>

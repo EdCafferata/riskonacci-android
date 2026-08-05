@@ -40,4 +40,7 @@
     <string name="action_new_round">새 라운드</string>
     <string name="subtitle_play_together">어디서든 함께 플레이</string>
     <string name="action_reveal">공개</string>
+    <string name="state_connecting">연결 중…</string>
+    <string name="error_connect_failed_title">연결할 수 없음</string>
+    <string name="error_connect_failed_message">인터넷 연결을 확인한 후 다시 시도하세요.</string>
 </resources>

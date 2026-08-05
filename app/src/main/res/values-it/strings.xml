@@ -40,4 +40,7 @@
     <string name="action_new_round">Nuovo turno</string>
     <string name="subtitle_play_together">Gioca insieme, da qualsiasi luogo</string>
     <string name="action_reveal">Rivela</string>
+    <string name="state_connecting">Connessione…</string>
+    <string name="error_connect_failed_title">Connessione non riuscita</string>
+    <string name="error_connect_failed_message">Controlla la connessione a Internet e riprova.</string>
 </resources>

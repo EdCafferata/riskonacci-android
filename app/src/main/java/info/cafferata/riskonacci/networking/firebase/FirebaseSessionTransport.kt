@@ -54,6 +54,7 @@ class FirebaseSessionTransport : SessionTransport {
     private var heartbeatJob: Job? = null
 
     private var hasReceivedInitialRoster = false
+    private var hasSignaledConnected = false
     private val activeParticipants = mutableMapOf<String, Date>()
     private var knownDeckRaw: String? = null
     private var knownTwoRoundsEnabled: Boolean? = null
@@ -64,6 +65,9 @@ class FirebaseSessionTransport : SessionTransport {
     override var onReceive: ((SessionMessage, String) -> Unit)? = null
     override var onPeerConnected: ((String, String) -> Unit)? = null
     override var onPeerDisconnected: ((String) -> Unit)? = null
+    override var onLocalParticipantReady: ((String) -> Unit)? = null
+    override var onConnected: (() -> Unit)? = null
+    override var onConnectFailed: (() -> Unit)? = null
 
     /** Gated on `hasReceivedInitialRoster` so a just-joined device doesn't
      * briefly see only itself and wrongly conclude it's the sole (and
@@ -78,7 +82,7 @@ class FirebaseSessionTransport : SessionTransport {
         this.roomId = roomId
         localNickname = nickname
         scope.launch {
-            ensureSignedIn()
+            if (!ensureSignedIn()) return@launch
             activeParticipants[localParticipantId] = Date()
             runCatching {
                 roomRef.set(FirebaseRoomDocument(hostId = localParticipantId, deckRaw = Deck.RISK.rawValue, twoRoundsEnabled = true)).await()
@@ -93,7 +97,7 @@ class FirebaseSessionTransport : SessionTransport {
         this.roomId = roomId
         localNickname = nickname
         scope.launch {
-            ensureSignedIn()
+            if (!ensureSignedIn()) return@launch
             activeParticipants[localParticipantId] = Date()
             upsertOwnParticipantDocument()
             startListening()
@@ -130,19 +134,30 @@ class FirebaseSessionTransport : SessionTransport {
         }
         activeParticipants.clear()
         hasReceivedInitialRoster = false
+        hasSignaledConnected = false
     }
 
     // MARK: Auth
 
-    private suspend fun ensureSignedIn() {
+    /** Returns true once the local participant id is known. On failure
+     * (no network) it fires [onConnectFailed] and returns false so the
+     * caller bails out instead of writing documents with an empty id. */
+    private suspend fun ensureSignedIn(): Boolean {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             localParticipantId = currentUser.uid
-            return
+            onLocalParticipantReady?.invoke(localParticipantId)
+            return true
         }
-        val result = runCatching { FirebaseAuth.getInstance().signInAnonymously().await() }.getOrNull()
-            ?: return // no network at all — transport degrades to a harmless no-op
-        localParticipantId = result.user?.uid ?: ""
+        val uid = runCatching { FirebaseAuth.getInstance().signInAnonymously().await() }
+            .getOrNull()?.user?.uid
+        if (uid.isNullOrEmpty()) {
+            onConnectFailed?.invoke()
+            return false
+        }
+        localParticipantId = uid
+        onLocalParticipantReady?.invoke(localParticipantId)
+        return true
     }
 
     // MARK: Sending
@@ -249,6 +264,14 @@ class FirebaseSessionTransport : SessionTransport {
         hasReceivedInitialRoster = true
         val now = Date()
         val fresh = seen.filterValues { now.time - it.first.time < STALE_THRESHOLD_MS }
+
+        // First roster snapshot that includes our own participant document
+        // means a full write+read round-trip to the backend succeeded — the
+        // signal the UI waits on to leave the "connecting" state.
+        if (!hasSignaledConnected && fresh.containsKey(localParticipantId)) {
+            hasSignaledConnected = true
+            onConnected?.invoke()
+        }
 
         for ((id, value) in fresh) {
             if (!activeParticipants.containsKey(id)) {

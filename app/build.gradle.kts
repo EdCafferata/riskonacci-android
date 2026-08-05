@@ -13,13 +13,23 @@ android {
         applicationId = "info.cafferata.riskonacci"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "1.0.0"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file(project.findProperty("RISKONACCI_STORE_FILE") as String)
+            storePassword = project.findProperty("RISKONACCI_STORE_PASSWORD") as String
+            keyAlias = project.findProperty("RISKONACCI_KEY_ALIAS") as String
+            keyPassword = project.findProperty("RISKONACCI_KEY_PASSWORD") as String
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

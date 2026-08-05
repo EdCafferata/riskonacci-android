@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -26,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import info.cafferata.riskonacci.R
 import info.cafferata.riskonacci.networking.RoomId
@@ -43,10 +46,65 @@ import info.cafferata.riskonacci.viewmodel.MultiplayerRoomViewModel
  */
 @Composable
 fun RoomEntryScreen(room: MultiplayerRoomViewModel) {
-    if (room.connectionState == ConnectionState.IDLE) {
-        EntryForm(room)
-    } else {
-        RoomScreen(room)
+    when (room.connectionState) {
+        ConnectionState.IDLE -> EntryForm(room)
+        ConnectionState.CONNECTING -> ConnectingView()
+        ConnectionState.CONNECTED -> RoomScreen(room)
+        ConnectionState.FAILED -> ConnectionFailedView(onBack = { room.leave() })
+    }
+}
+
+/** Shown while the room is being set up on the backend — brief when
+ * online, and it can't get stuck: a timeout flips it to
+ * [ConnectionFailedView] if the backend never confirms. */
+@Composable
+private fun ConnectingView() {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        CircularProgressIndicator()
+        Spacer(Modifier.size(20.dp))
+        Text(
+            stringResource(R.string.state_connecting),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+/** Clear, recoverable error instead of a blank room that looks frozen
+ * when the device has no connection. */
+@Composable
+private fun ConnectionFailedView(onBack: () -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize().widthIn(max = 480.dp).padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Icon(
+            Icons.Filled.CloudOff,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.size(48.dp),
+        )
+        Spacer(Modifier.size(16.dp))
+        Text(
+            stringResource(R.string.error_connect_failed_title),
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Spacer(Modifier.size(8.dp))
+        Text(
+            stringResource(R.string.error_connect_failed_message),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+        )
+        Spacer(Modifier.size(24.dp))
+        Button(onClick = onBack, modifier = Modifier.fillMaxWidth()) {
+            Text(stringResource(R.string.action_back))
+        }
     }
 }
 

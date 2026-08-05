@@ -6,6 +6,10 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import info.cafferata.riskonacci.model.Deck
 import info.cafferata.riskonacci.model.PokerCard
 import info.cafferata.riskonacci.model.RiskRound
@@ -26,7 +30,7 @@ data class VoteState(
     val hasVoted: Boolean get() = singleLabel != null || likelihoodLabel != null || impactLabel != null
 }
 
-enum class ConnectionState { IDLE, CONNECTING, CONNECTED }
+enum class ConnectionState { IDLE, CONNECTING, CONNECTED, FAILED }
 
 /**
  * Room state for a live multiplayer session, backed by Firebase — same
@@ -51,6 +55,14 @@ class MultiplayerRoomViewModel : ViewModel() {
 
     private var transport: SessionTransport? = null
     private var localNickname = ""
+    private var connectTimeoutJob: Job? = null
+
+    companion object {
+        /** How long to wait for the backend to confirm the room is live
+         * before giving up and showing a clear "couldn't connect" screen,
+         * rather than leaving the user staring at an empty room. */
+        private const val CONNECT_TIMEOUT_MS = 15_000L
+    }
 
     val localParticipantId: String? get() = transport?.localParticipantId
 
@@ -66,33 +78,43 @@ class MultiplayerRoomViewModel : ViewModel() {
     fun hostRoom(nickname: String) {
         localNickname = nickname
         roomId = RoomId.generate()
-        connectionState = ConnectionState.CONNECTING
-
-        val newTransport = FirebaseSessionTransport()
-        wire(newTransport)
-        transport = newTransport
-        newTransport.startHosting(roomId, nickname)
-
-        participants.clear()
-        participants.add(SessionParticipant(newTransport.localParticipantId, nickname))
-        connectionState = ConnectionState.CONNECTED
+        startConnecting { it.startHosting(roomId, nickname) }
     }
 
     fun joinRoom(roomId: String, nickname: String) {
-        localNickname = nickname
         this.roomId = roomId
+        startConnecting { it.join(roomId, nickname) }
+    }
+
+    /** Shared host/join setup: wire a fresh transport, kick off the
+     * connection, and arm a timeout. The local participant is added later
+     * via [handleLocalParticipantReady] once sign-in resolves its real id —
+     * reading `localParticipantId` here would only ever see the empty
+     * placeholder, since sign-in is asynchronous. */
+    private fun startConnecting(begin: (SessionTransport) -> Unit) {
         connectionState = ConnectionState.CONNECTING
+        participants.clear()
+        votes.clear()
+        isRevealed = false
 
         val newTransport = FirebaseSessionTransport()
         wire(newTransport)
         transport = newTransport
-        newTransport.join(roomId, nickname)
+        begin(newTransport)
 
-        participants.clear()
-        participants.add(SessionParticipant(newTransport.localParticipantId, nickname))
+        connectTimeoutJob?.cancel()
+        connectTimeoutJob = viewModelScope.launch {
+            delay(CONNECT_TIMEOUT_MS)
+            if (connectionState == ConnectionState.CONNECTING) {
+                transport?.stop()
+                connectionState = ConnectionState.FAILED
+            }
+        }
     }
 
     fun leave() {
+        connectTimeoutJob?.cancel()
+        connectTimeoutJob = null
         transport?.stop()
         transport = null
         participants.clear()
@@ -197,6 +219,31 @@ class MultiplayerRoomViewModel : ViewModel() {
         transport.onPeerConnected = { id, nickname -> handlePeerConnected(id, nickname) }
         transport.onPeerDisconnected = { id -> handlePeerDisconnected(id) }
         transport.onReceive = { message, senderId -> handle(message, senderId) }
+        transport.onLocalParticipantReady = { id -> handleLocalParticipantReady(id) }
+        transport.onConnected = { handleConnected() }
+        transport.onConnectFailed = { handleConnectFailed() }
+    }
+
+    /** Sign-in resolved our real id — add ourselves to the roster now
+     * (the placeholder couldn't be added earlier because the id was
+     * still empty). */
+    private fun handleLocalParticipantReady(id: String) {
+        if (id.isNotEmpty() && participants.none { it.id == id }) {
+            participants.add(SessionParticipant(id, localNickname))
+        }
+    }
+
+    private fun handleConnected() {
+        connectTimeoutJob?.cancel()
+        connectTimeoutJob = null
+        connectionState = ConnectionState.CONNECTED
+    }
+
+    private fun handleConnectFailed() {
+        connectTimeoutJob?.cancel()
+        connectTimeoutJob = null
+        transport?.stop()
+        connectionState = ConnectionState.FAILED
     }
 
     private fun handlePeerConnected(id: String, nickname: String) {

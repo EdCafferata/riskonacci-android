@@ -40,4 +40,7 @@
     <string name="action_new_round">Nova rodada</string>
     <string name="subtitle_play_together">Jogar juntos, de qualquer lugar</string>
     <string name="action_reveal">Revelar</string>
+    <string name="state_connecting">A ligar…</string>
+    <string name="error_connect_failed_title">Não foi possível ligar</string>
+    <string name="error_connect_failed_message">Verifica a tua ligação à Internet e tenta novamente.</string>
 </resources>

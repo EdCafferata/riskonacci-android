@@ -40,4 +40,7 @@
     <string name="action_new_round">Nieuwe ronde</string>
     <string name="subtitle_play_together">Samen spelen, van overal</string>
     <string name="action_reveal">Onthullen</string>
+    <string name="state_connecting">Verbinden…</string>
+    <string name="error_connect_failed_title">Verbinden mislukt</string>
+    <string name="error_connect_failed_message">Controleer je internetverbinding en probeer het opnieuw.</string>
 </resources>
