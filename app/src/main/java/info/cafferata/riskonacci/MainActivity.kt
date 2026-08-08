@@ -14,11 +14,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import info.cafferata.riskonacci.billing.TipJarStore
 import info.cafferata.riskonacci.ui.screens.CardGridScreen
 import info.cafferata.riskonacci.ui.screens.DeckPickerScreen
 import info.cafferata.riskonacci.ui.screens.RevealScreen
 import info.cafferata.riskonacci.ui.screens.RiskMatrixRevealScreen
 import info.cafferata.riskonacci.ui.screens.RoomEntryScreen
+import info.cafferata.riskonacci.ui.screens.TipJarScreen
 import info.cafferata.riskonacci.ui.theme.RiskonacciTheme
 import info.cafferata.riskonacci.viewmodel.GameViewModel
 import info.cafferata.riskonacci.viewmodel.MultiplayerRoomViewModel
@@ -42,6 +44,13 @@ class MainActivity : ComponentActivity() {
 private fun RiskonacciApp() {
     val viewModel: GameViewModel = viewModel()
     var showMultiplayer by remember { mutableStateOf(false) }
+    var showTipJar by remember { mutableStateOf(false) }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val tipJarStore = remember { TipJarStore(context) }
+
+    if (showTipJar) {
+        TipJarScreen(store = tipJarStore, onDismiss = { showTipJar = false })
+    }
 
     if (showMultiplayer) {
         val room: MultiplayerRoomViewModel = viewModel()
@@ -73,6 +82,7 @@ private fun RiskonacciApp() {
             DeckPickerScreen(
                 onDeckSelected = { deck -> viewModel.chooseDeck(deck) },
                 onPlayTogether = { showMultiplayer = true },
+                onTipJar = { showTipJar = true },
             )
     }
 }

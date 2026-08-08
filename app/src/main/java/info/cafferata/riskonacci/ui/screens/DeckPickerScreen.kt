@@ -11,10 +11,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Group
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,13 +34,18 @@ import info.cafferata.riskonacci.ui.iconForSymbolName
  * set it apart as the app's distinguishing deck.
  */
 @Composable
-fun DeckPickerScreen(onDeckSelected: (Deck) -> Unit, onPlayTogether: () -> Unit) {
+fun DeckPickerScreen(onDeckSelected: (Deck) -> Unit, onPlayTogether: () -> Unit, onTipJar: () -> Unit = {}) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = stringResource(info.cafferata.riskonacci.R.string.app_name),
-            style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.padding(start = 20.dp, top = 24.dp, bottom = 16.dp),
-        )
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 8.dp, top = 24.dp, bottom = 16.dp)) {
+            Text(
+                text = stringResource(info.cafferata.riskonacci.R.string.app_name),
+                style = MaterialTheme.typography.headlineLarge,
+                modifier = Modifier.weight(1f),
+            )
+            IconButton(onClick = onTipJar) {
+                Icon(Icons.Filled.FavoriteBorder, contentDescription = "Tip Jar", tint = MaterialTheme.colorScheme.primary)
+            }
+        }
 
         LazyColumn(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),

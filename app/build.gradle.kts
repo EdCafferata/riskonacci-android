@@ -13,8 +13,8 @@ android {
         applicationId = "info.cafferata.riskonacci"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.0.0"
+        versionCode = 3
+        versionName = "1.0.1"
     }
 
     signingConfigs {
@@ -64,6 +64,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-auth")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.1")
+
+    // Play Billing — verbruikbare tip-jar-aankopen, zelfde patroon als Duski/Dicom Viewer.
+    implementation("com.android.billingclient:billing-ktx:9.1.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }
