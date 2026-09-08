@@ -68,5 +68,12 @@ dependencies {
     // Play Billing — verbruikbare tip-jar-aankopen, zelfde patroon als Duski/Dicom Viewer.
     implementation("com.android.billingclient:billing-ktx:9.1.0")
 
+    // Override the ancient androidx.fragment (1.0.0/1.1.0) pulled in transitively via
+    // com.google.android.gms:play-services-base (from Play Billing and Firebase). Gradle
+    // resolves to the highest version, so the bundled APK ships fragment 1.9.0 instead of
+    // 1.1.0, clearing the Play Console "SDK version is outdated" warning. This app is pure
+    // Compose and doesn't use fragments itself, so the bump is behaviour-neutral.
+    implementation("androidx.fragment:fragment:1.9.0")
+
     debugImplementation("androidx.compose.ui:ui-tooling")
 }
