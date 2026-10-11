@@ -8,3 +8,13 @@ captures/
 .cxx/
 local.properties
 app/google-services.json
+
+# Signing & secrets — nooit committen
+*.jks
+*.keystore
+keystore.properties
+*.p12
+*.pem
+.env
+.env.*
+!.env.example
