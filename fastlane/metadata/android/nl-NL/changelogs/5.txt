@@ -1,0 +1,1 @@
+De terugknop gaat nu één scherm terug binnen de app — naar de dekkeuze, of de spelkamer uit — in plaats van Riskonacci te sluiten.

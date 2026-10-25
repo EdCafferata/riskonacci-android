@@ -1,0 +1,1 @@
+The back button now steps back one screen inside the app — to the deck list, or out of a game room — instead of closing Riskonacci.

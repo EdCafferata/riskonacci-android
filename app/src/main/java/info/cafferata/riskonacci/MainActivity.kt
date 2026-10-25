@@ -2,6 +2,7 @@ package info.cafferata.riskonacci
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import info.cafferata.riskonacci.ui.screens.RiskMatrixRevealScreen
 import info.cafferata.riskonacci.ui.screens.RoomEntryScreen
 import info.cafferata.riskonacci.ui.screens.TipJarScreen
 import info.cafferata.riskonacci.ui.theme.RiskonacciTheme
+import info.cafferata.riskonacci.viewmodel.ConnectionState
 import info.cafferata.riskonacci.viewmodel.GameViewModel
 import info.cafferata.riskonacci.viewmodel.MultiplayerRoomViewModel
 
@@ -43,17 +45,33 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun RiskonacciApp() {
     val viewModel: GameViewModel = viewModel()
+    val room: MultiplayerRoomViewModel = viewModel()
     var showMultiplayer by remember { mutableStateOf(false) }
     var showTipJar by remember { mutableStateOf(false) }
     val context = androidx.compose.ui.platform.LocalContext.current
     val tipJarStore = remember { TipJarStore(context) }
+
+    // System back button: unwind the app's own navigation one level at a
+    // time instead of finishing the Activity (which otherwise closes the
+    // app outright from every screen). The deck picker is the root — there
+    // the handler stays disabled so the system still exits the app. The
+    // Tip Jar is a Dialog and already consumes its own back press.
+    BackHandler(enabled = showMultiplayer || viewModel.isRevealed || viewModel.selectedDeck != null) {
+        when {
+            showMultiplayer ->
+                if (room.connectionState == ConnectionState.IDLE) showMultiplayer = false
+                else room.leave()
+            viewModel.isRevealed -> viewModel.reset()
+            viewModel.selectedDeck != null ->
+                if (viewModel.canGoBack) viewModel.goBack() else viewModel.backToDecks()
+        }
+    }
 
     if (showTipJar) {
         TipJarScreen(store = tipJarStore, onDismiss = { showTipJar = false })
     }
 
     if (showMultiplayer) {
-        val room: MultiplayerRoomViewModel = viewModel()
         RoomEntryScreen(room)
         return
     }
