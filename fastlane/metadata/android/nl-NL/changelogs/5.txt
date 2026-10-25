@@ -1,1 +1,2 @@
-De terugknop gaat nu één scherm terug binnen de app — naar de dekkeuze, of de spelkamer uit — in plaats van Riskonacci te sluiten.
+• De terugknop gaat nu één scherm terug binnen de app — naar de dekkeuze of de spelkamer uit — in plaats van Riskonacci te sluiten.
+• Een frisse look: een subtiele diagonale kleurwash en doorschijnende panelen, geïnspireerd op het app-icoon.

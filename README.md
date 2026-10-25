@@ -17,6 +17,7 @@ Native Kotlin + Jetpack Compose, not a cross-platform framework — mirrors the 
 - Material 3 theming matching the iOS app's gold accent color exactly
 - Launcher icon reused from the iOS app's app icon asset
 - System back button steps back one level through the app (reveal → grid, grid → deck picker, out of a multiplayer room) instead of closing the app; only the deck picker (the root) exits on back, mirroring the iOS app's `NavigationStack` behaviour.
+- A subtle diagonal background wash echoing the app icon's tricolore (green in the top-left → red in the bottom-right, on the logo's diagonal) with translucent "glass" panels, in both light and dark. Defined in `MainActivity.kt` (`Modifier.riskonacciLogoWash`); kept to a plain translucent treatment (no runtime blur) so it stays on `compileSdk 36` with no extra dependency.
 
 **Platform-intentional difference (not a gap):** the Tip Jar's "Rate" button opens the Play Store listing rather than using Play's In-App Review API. Google recommends deep-linking to the listing for an explicit user-tapped "Rate" action — the In-App Review API is meant for unprompted moments and is quota-limited. (The iOS app uses `requestReview()` there, the iOS-appropriate equivalent.)
 

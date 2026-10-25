@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import info.cafferata.riskonacci.model.Deck
@@ -71,9 +72,10 @@ fun CardGridScreen(
                         }
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(),
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
             )
         },
+        containerColor = Color.Transparent,
     ) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize().padding(innerPadding), contentAlignment = Alignment.TopCenter) {
             LazyVerticalGrid(
