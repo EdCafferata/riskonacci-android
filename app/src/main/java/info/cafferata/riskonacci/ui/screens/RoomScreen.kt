@@ -53,7 +53,16 @@ fun RoomScreen(room: MultiplayerRoomViewModel) {
                     IconButton(onClick = {
                         val sendIntent = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, "$shareJoinPrefix ${room.roomId}")
+                            putExtra(
+                                Intent.EXTRA_TEXT,
+                                """
+                                $shareJoinPrefix ${room.roomId}
+
+                                App Store (iPhone/iPad): https://apps.apple.com/app/id6807144804
+                                Mac App Store: https://apps.apple.com/app/id6807144804?platform=mac
+                                Google Play: https://play.google.com/store/apps/details?id=info.cafferata.riskonacci
+                                """.trimIndent()
+                            )
                         }
                         context.startActivity(Intent.createChooser(sendIntent, null))
                     }) {
